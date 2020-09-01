@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
 open web browser and input url: http://localhost:5000/ 
 
-![](doc/vis.png)
+![](./doc/vis.png)
 
 ##### Todo：
 
