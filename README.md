@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
 open web browser and input url: http://localhost:5000/ 
 
-![](./doc/vis.png)
+![](https://github.com/mjlsuccess/QuiverPytorch/blob/master/doc/vis.png)
 
 ##### Todo：
 
