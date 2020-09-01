@@ -13,7 +13,7 @@
                 "inbound_nodes": [
                     [
                         [
-                            "140523774104592/View"
+                            "140220038047632/View"
                         ],
                         [
                             "fc1"
@@ -24,11 +24,11 @@
             {
                 "class_name": "View",
                 "config": "None",
-                "name": "140523774104592/View",
+                "name": "140220038047632/View",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774105296/View"
+                            "140220162969936/View"
                         ]
                     ]
                 ]
@@ -36,11 +36,11 @@
             {
                 "class_name": "View",
                 "config": "None",
-                "name": "140523774105296/View",
+                "name": "140220162969936/View",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774105744/Mean1"
+                            "140220038048784/Mean1"
                         ]
                     ]
                 ]
@@ -48,11 +48,11 @@
             {
                 "class_name": "Mean1",
                 "config": "None",
-                "name": "140523774105744/Mean1",
+                "name": "140220038048784/Mean1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774106256/View"
+                            "140220038049296/View"
                         ]
                     ]
                 ]
@@ -60,11 +60,11 @@
             {
                 "class_name": "View",
                 "config": "None",
-                "name": "140523774106256/View",
+                "name": "140220038049296/View",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774106768/Relu1"
+                            "140220038119504/Relu1"
                         ]
                     ]
                 ]
@@ -72,11 +72,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774106768/Relu1",
+                "name": "140220038119504/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774107152/Add0"
+                            "140220038119952/Add0"
                         ]
                     ]
                 ]
@@ -84,14 +84,14 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523774107152/Add0",
+                "name": "140220038119952/Add0",
                 "inbound_nodes": [
                     [
                         [
                             "layer4.1.bn2"
                         ],
                         [
-                            "140523774107600/Relu1"
+                            "140220038120464/Relu1"
                         ]
                     ]
                 ]
@@ -101,7 +101,7 @@
                 "config": {
                     "bias": "(512)",
                     "weight": "(512)",
-                    "layer_id": "140523773921296"
+                    "layer_id": "140220037897168"
                 },
                 "name": "layer4.1.bn2",
                 "inbound_nodes": [
@@ -116,13 +116,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(512, 512, 3, 3)",
-                    "layer_id": "140523773921232"
+                    "layer_id": "140220037897104"
                 },
                 "name": "layer4.1.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774124752/Relu1"
+                            "140220038121232/Relu1"
                         ]
                     ]
                 ]
@@ -130,7 +130,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774124752/Relu1",
+                "name": "140220038121232/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -144,7 +144,7 @@
                 "config": {
                     "bias": "(512)",
                     "weight": "(512)",
-                    "layer_id": "140523773920848"
+                    "layer_id": "140220037896720"
                 },
                 "name": "layer4.1.bn1",
                 "inbound_nodes": [
@@ -159,13 +159,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(512, 512, 3, 3)",
-                    "layer_id": "140523773920208"
+                    "layer_id": "140220037896080"
                 },
                 "name": "layer4.1.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774107600/Relu1"
+                            "140220038120464/Relu1"
                         ]
                     ]
                 ]
@@ -173,11 +173,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774107600/Relu1",
+                "name": "140220038120464/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774126736/Add0"
+                            "140220038123216/Add0"
                         ]
                     ]
                 ]
@@ -185,7 +185,7 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523774126736/Add0",
+                "name": "140220038123216/Add0",
                 "inbound_nodes": [
                     [
                         [
@@ -202,7 +202,7 @@
                 "config": {
                     "bias": "(512)",
                     "weight": "(512)",
-                    "layer_id": "140523773920528"
+                    "layer_id": "140220037896400"
                 },
                 "name": "layer4.0.bn2",
                 "inbound_nodes": [
@@ -217,13 +217,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(512, 512, 3, 3)",
-                    "layer_id": "140523773920464"
+                    "layer_id": "140220037896336"
                 },
                 "name": "layer4.0.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774140624/Relu1"
+                            "140220038128912/Relu1"
                         ]
                     ]
                 ]
@@ -231,7 +231,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774140624/Relu1",
+                "name": "140220038128912/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -245,7 +245,7 @@
                 "config": {
                     "bias": "(512)",
                     "weight": "(512)",
-                    "layer_id": "140523773920080"
+                    "layer_id": "140220037895952"
                 },
                 "name": "layer4.0.bn1",
                 "inbound_nodes": [
@@ -260,13 +260,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(512, 256, 3, 3)",
-                    "layer_id": "140523773920016"
+                    "layer_id": "140220037895888"
                 },
                 "name": "layer4.0.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774142160/Relu1"
+                            "140220038130448/Relu1"
                         ]
                     ]
                 ]
@@ -274,11 +274,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774142160/Relu1",
+                "name": "140220038130448/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774142672/Add0"
+                            "140220038130960/Add0"
                         ]
                     ]
                 ]
@@ -286,14 +286,14 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523774142672/Add0",
+                "name": "140220038130960/Add0",
                 "inbound_nodes": [
                     [
                         [
                             "layer3.1.bn2"
                         ],
                         [
-                            "140523774143248/Relu1"
+                            "140220038131536/Relu1"
                         ]
                     ]
                 ]
@@ -303,7 +303,7 @@
                 "config": {
                     "bias": "(256)",
                     "weight": "(256)",
-                    "layer_id": "140523781115472"
+                    "layer_id": "140220037894736"
                 },
                 "name": "layer3.1.bn2",
                 "inbound_nodes": [
@@ -318,13 +318,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(256, 256, 3, 3)",
-                    "layer_id": "140523781115408"
+                    "layer_id": "140220037894672"
                 },
                 "name": "layer3.1.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774144208/Relu1"
+                            "140220038136656/Relu1"
                         ]
                     ]
                 ]
@@ -332,7 +332,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774144208/Relu1",
+                "name": "140220038136656/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -346,7 +346,7 @@
                 "config": {
                     "bias": "(256)",
                     "weight": "(256)",
-                    "layer_id": "140523781115024"
+                    "layer_id": "140220037894288"
                 },
                 "name": "layer3.1.bn1",
                 "inbound_nodes": [
@@ -361,13 +361,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(256, 256, 3, 3)",
-                    "layer_id": "140523781114384"
+                    "layer_id": "140220037894224"
                 },
                 "name": "layer3.1.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774143248/Relu1"
+                            "140220038131536/Relu1"
                         ]
                     ]
                 ]
@@ -375,11 +375,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774143248/Relu1",
+                "name": "140220038131536/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774154448/Add0"
+                            "140220038138640/Add0"
                         ]
                     ]
                 ]
@@ -387,7 +387,7 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523774154448/Add0",
+                "name": "140220038138640/Add0",
                 "inbound_nodes": [
                     [
                         [
@@ -404,7 +404,7 @@
                 "config": {
                     "bias": "(256)",
                     "weight": "(256)",
-                    "layer_id": "140523781114704"
+                    "layer_id": "140220045094672"
                 },
                 "name": "layer3.0.bn2",
                 "inbound_nodes": [
@@ -419,13 +419,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(256, 256, 3, 3)",
-                    "layer_id": "140523781114640"
+                    "layer_id": "140220045094608"
                 },
                 "name": "layer3.0.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774155984/Relu1"
+                            "140219701543248/Relu1"
                         ]
                     ]
                 ]
@@ -433,7 +433,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523774155984/Relu1",
+                "name": "140219701543248/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -447,7 +447,7 @@
                 "config": {
                     "bias": "(256)",
                     "weight": "(256)",
-                    "layer_id": "140523781114256"
+                    "layer_id": "140220045094224"
                 },
                 "name": "layer3.0.bn1",
                 "inbound_nodes": [
@@ -462,13 +462,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(256, 128, 3, 3)",
-                    "layer_id": "140523781114192"
+                    "layer_id": "140220045094160"
                 },
                 "name": "layer3.0.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437642512/Relu1"
+                            "140219701544784/Relu1"
                         ]
                     ]
                 ]
@@ -476,11 +476,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437642512/Relu1",
+                "name": "140219701544784/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437643024/Add0"
+                            "140219701545296/Add0"
                         ]
                     ]
                 ]
@@ -488,14 +488,14 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523437643024/Add0",
+                "name": "140219701545296/Add0",
                 "inbound_nodes": [
                     [
                         [
                             "layer2.1.bn2"
                         ],
                         [
-                            "140523437643600/Relu1"
+                            "140219701545872/Relu1"
                         ]
                     ]
                 ]
@@ -505,7 +505,7 @@
                 "config": {
                     "bias": "(128)",
                     "weight": "(128)",
-                    "layer_id": "140523781113104"
+                    "layer_id": "140220045093072"
                 },
                 "name": "layer2.1.bn2",
                 "inbound_nodes": [
@@ -520,13 +520,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(128, 128, 3, 3)",
-                    "layer_id": "140523781113040"
+                    "layer_id": "140220045093008"
                 },
                 "name": "layer2.1.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437644560/Relu1"
+                            "140219701546832/Relu1"
                         ]
                     ]
                 ]
@@ -534,7 +534,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437644560/Relu1",
+                "name": "140219701546832/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -548,7 +548,7 @@
                 "config": {
                     "bias": "(128)",
                     "weight": "(128)",
-                    "layer_id": "140523781112656"
+                    "layer_id": "140220045092624"
                 },
                 "name": "layer2.1.bn1",
                 "inbound_nodes": [
@@ -563,13 +563,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(128, 128, 3, 3)",
-                    "layer_id": "140523781112016"
+                    "layer_id": "140220045091984"
                 },
                 "name": "layer2.1.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437643600/Relu1"
+                            "140219701545872/Relu1"
                         ]
                     ]
                 ]
@@ -577,11 +577,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437643600/Relu1",
+                "name": "140219701545872/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437650704/Add0"
+                            "140219701552976/Add0"
                         ]
                     ]
                 ]
@@ -589,7 +589,7 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523437650704/Add0",
+                "name": "140219701552976/Add0",
                 "inbound_nodes": [
                     [
                         [
@@ -606,7 +606,7 @@
                 "config": {
                     "bias": "(128)",
                     "weight": "(128)",
-                    "layer_id": "140523781112336"
+                    "layer_id": "140220045092304"
                 },
                 "name": "layer2.0.bn2",
                 "inbound_nodes": [
@@ -621,13 +621,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(128, 128, 3, 3)",
-                    "layer_id": "140523781112272"
+                    "layer_id": "140220045092240"
                 },
                 "name": "layer2.0.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437652240/Relu1"
+                            "140219701554512/Relu1"
                         ]
                     ]
                 ]
@@ -635,7 +635,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437652240/Relu1",
+                "name": "140219701554512/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -649,7 +649,7 @@
                 "config": {
                     "bias": "(128)",
                     "weight": "(128)",
-                    "layer_id": "140523781111888"
+                    "layer_id": "140220045091856"
                 },
                 "name": "layer2.0.bn1",
                 "inbound_nodes": [
@@ -664,13 +664,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(128, 64, 3, 3)",
-                    "layer_id": "140523781005264"
+                    "layer_id": "140220045091792"
                 },
                 "name": "layer2.0.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437653776/Relu1"
+                            "140219701560208/Relu1"
                         ]
                     ]
                 ]
@@ -678,11 +678,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437653776/Relu1",
+                "name": "140219701560208/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437662544/Add0"
+                            "140219701560720/Add0"
                         ]
                     ]
                 ]
@@ -690,14 +690,14 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523437662544/Add0",
+                "name": "140219701560720/Add0",
                 "inbound_nodes": [
                     [
                         [
                             "layer1.1.bn2"
                         ],
                         [
-                            "140523437663120/Relu1"
+                            "140219701561296/Relu1"
                         ]
                     ]
                 ]
@@ -707,7 +707,7 @@
                 "config": {
                     "bias": "(64)",
                     "weight": "(64)",
-                    "layer_id": "140523781004048"
+                    "layer_id": "140220044992272"
                 },
                 "name": "layer1.1.bn2",
                 "inbound_nodes": [
@@ -722,13 +722,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(64, 64, 3, 3)",
-                    "layer_id": "140523781003984"
+                    "layer_id": "140220044992144"
                 },
                 "name": "layer1.1.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437664080/Relu1"
+                            "140219701562256/Relu1"
                         ]
                     ]
                 ]
@@ -736,7 +736,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437664080/Relu1",
+                "name": "140219701562256/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -750,7 +750,7 @@
                 "config": {
                     "bias": "(64)",
                     "weight": "(64)",
-                    "layer_id": "140523781003856"
+                    "layer_id": "140220044991824"
                 },
                 "name": "layer1.1.bn1",
                 "inbound_nodes": [
@@ -765,13 +765,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(64, 64, 3, 3)",
-                    "layer_id": "140523781004112"
+                    "layer_id": "140220044991952"
                 },
                 "name": "layer1.1.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437663120/Relu1"
+                            "140219701561296/Relu1"
                         ]
                     ]
                 ]
@@ -779,11 +779,11 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437663120/Relu1",
+                "name": "140219701561296/Relu1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437666064/Add0"
+                            "140219701572496/Add0"
                         ]
                     ]
                 ]
@@ -791,14 +791,14 @@
             {
                 "class_name": "Add0",
                 "config": "None",
-                "name": "140523437666064/Add0",
+                "name": "140219701572496/Add0",
                 "inbound_nodes": [
                     [
                         [
                             "layer1.0.bn2"
                         ],
                         [
-                            "140523437670800/MaxPool2DWithIndices"
+                            "140219701573072/MaxPool2DWithIndices"
                         ]
                     ]
                 ]
@@ -808,7 +808,7 @@
                 "config": {
                     "bias": "(64)",
                     "weight": "(64)",
-                    "layer_id": "140523781002832"
+                    "layer_id": "140220044991248"
                 },
                 "name": "layer1.0.bn2",
                 "inbound_nodes": [
@@ -823,13 +823,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(64, 64, 3, 3)",
-                    "layer_id": "140523781002768"
+                    "layer_id": "140220044991184"
                 },
                 "name": "layer1.0.conv2",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437671760/Relu1"
+                            "140219701574032/Relu1"
                         ]
                     ]
                 ]
@@ -837,7 +837,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437671760/Relu1",
+                "name": "140219701574032/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -851,7 +851,7 @@
                 "config": {
                     "bias": "(64)",
                     "weight": "(64)",
-                    "layer_id": "140523781002640"
+                    "layer_id": "140220044991568"
                 },
                 "name": "layer1.0.bn1",
                 "inbound_nodes": [
@@ -866,13 +866,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(64, 64, 3, 3)",
-                    "layer_id": "140523781002576"
+                    "layer_id": "140220044990672"
                 },
                 "name": "layer1.0.conv1",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437670800/MaxPool2DWithIndices"
+                            "140219701573072/MaxPool2DWithIndices"
                         ]
                     ]
                 ]
@@ -880,11 +880,11 @@
             {
                 "class_name": "MaxPool2DWithIndices",
                 "config": "None",
-                "name": "140523437670800/MaxPool2DWithIndices",
+                "name": "140219701573072/MaxPool2DWithIndices",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437673616/Relu1"
+                            "140220204717136/Relu1"
                         ]
                     ]
                 ]
@@ -892,7 +892,7 @@
             {
                 "class_name": "Relu1",
                 "config": "None",
-                "name": "140523437673616/Relu1",
+                "name": "140220204717136/Relu1",
                 "inbound_nodes": [
                     [
                         [
@@ -906,7 +906,7 @@
                 "config": {
                     "bias": "(64)",
                     "weight": "(64)",
-                    "layer_id": "140523906199120"
+                    "layer_id": "140220204716496"
                 },
                 "name": "bn1",
                 "inbound_nodes": [
@@ -921,7 +921,7 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(64, 3, 7, 7)",
-                    "layer_id": "140524173522960"
+                    "layer_id": "140220437428752"
                 },
                 "name": "conv1",
                 "inbound_nodes": []
@@ -931,7 +931,7 @@
                 "config": {
                     "bias": "(128)",
                     "weight": "(128)",
-                    "layer_id": "140523781004688"
+                    "layer_id": "140220045091216"
                 },
                 "name": "layer2.0.downsample.1",
                 "inbound_nodes": [
@@ -946,13 +946,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(128, 64, 1, 1)",
-                    "layer_id": "140523781004432"
+                    "layer_id": "140220045090960"
                 },
                 "name": "layer2.0.downsample.0",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437653776/Relu1"
+                            "140219701560208/Relu1"
                         ]
                     ]
                 ]
@@ -962,7 +962,7 @@
                 "config": {
                     "bias": "(256)",
                     "weight": "(256)",
-                    "layer_id": "140523781113424"
+                    "layer_id": "140220045093392"
                 },
                 "name": "layer3.0.downsample.1",
                 "inbound_nodes": [
@@ -977,13 +977,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(256, 128, 1, 1)",
-                    "layer_id": "140523787530512"
+                    "layer_id": "140220203650064"
                 },
                 "name": "layer3.0.downsample.0",
                 "inbound_nodes": [
                     [
                         [
-                            "140523437642512/Relu1"
+                            "140219701544784/Relu1"
                         ]
                     ]
                 ]
@@ -993,7 +993,7 @@
                 "config": {
                     "bias": "(512)",
                     "weight": "(512)",
-                    "layer_id": "140523773919440"
+                    "layer_id": "140220037895312"
                 },
                 "name": "layer4.0.downsample.1",
                 "inbound_nodes": [
@@ -1008,13 +1008,13 @@
                 "class_name": "Convolution2D",
                 "config": {
                     "weight": "(512, 256, 1, 1)",
-                    "layer_id": "140523781115792"
+                    "layer_id": "140220037895056"
                 },
                 "name": "layer4.0.downsample.0",
                 "inbound_nodes": [
                     [
                         [
-                            "140523774142160/Relu1"
+                            "140220038130448/Relu1"
                         ]
                     ]
                 ]
@@ -1023,7 +1023,7 @@
                 "class_name": "T",
                 "config": {
                     "weight": "(1000, 512)",
-                    "layer_id": "140523773921872"
+                    "layer_id": "140220037897744"
                 },
                 "name": "fc1",
                 "inbound_nodes": []

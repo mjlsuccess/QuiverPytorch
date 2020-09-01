@@ -2,7 +2,15 @@
 
 ##### Install：
 
+```shell
+pip install opencv-python flask flask_cors numpy gevent imageio
+```
 
+if pytorch>=1.5.0 has been installed, just skip this:
+
+```shell
+pip install torch==1.5.1+cpu torchvision==0.6.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+```
 
 ##### Usage:
 
