@@ -116,11 +116,11 @@ def get_app(model, hooks, classes, top, html_base_dir, temp_folder='./tmp', inpu
         return jsonify(results)
         
 
-    # @app.route('/predict/<input_path>')
-    # def get_prediction(input_path):
-    #     # print ("prediction", input_path)
-    #     results = [[("sa","bot_34", 0.2)],[("sa","bot_35", 0.6)]]
-    #     return safe_jsonify(results)
+    @app.route('/predict/<input_path>')
+    def get_prediction(input_path):
+        # print ("prediction", input_path)
+        results = [[("sa","bot_34", 0.2)],[("sa","bot_35", 0.6)]]
+        return safe_jsonify(results)
 
     return app
 
