@@ -21,7 +21,7 @@ model = models.resnet18()
 #2.register hook function for conv. layers
 hook_list = register_hook(model) 
 #3.start
-server.launch(model, hook_list, input_folder="./data/Cat")  
+server.launch(model, hook_list, input_folder="./data/Cat", image_size=[50,50], use_gpu=False)
 ```
 
 1. run demo.py or demo_thread.py in terminal : 
