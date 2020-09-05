@@ -10,7 +10,7 @@ if __name__ == "__main__":
 
     hook_list = register_hook(model)
 
-    thread = threading.Thread(target=server.launch, args=(model, hook_list, "./data/Cat",))
+    thread = threading.Thread(target=server.launch, args=(model, hook_list, "./data/Cat",False, [200,200], ))
     thread.start()
     # thread.join() #block untile thread finish
 

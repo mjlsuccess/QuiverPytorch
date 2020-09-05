@@ -5,11 +5,21 @@ from quiver_engine.file_utils import save_layer_img
 
 # from quiver_engine.layer_result_generators import get_outputs_generator
 
-def save_layer_outputs(model, hooks, graph, layer_name, input_folder, input_name, out_folder):
+def save_layer_outputs(model, hooks, graph, layer_name, input_folder, input_name, out_folder, use_gpu, image_size):
 
     img_cv = cv2.imread(join(abspath(input_folder), input_name))
     img = cv2.cvtColor(img_cv, cv2.COLOR_BGR2RGB)
+
+    height, width = img.shape[:2]
+
+    if image_size is not None:
+        width = image_size[-1]
+        height = image_size[-2]
+
+    img = cv2.resize(img, (width, height))
+
     img = np.expand_dims(np.transpose(img, (2, 0, 1)), axis=0)
+
 
     img_tensor = torch.tensor(img, dtype=torch.float32)
     outputs = model(img_tensor)

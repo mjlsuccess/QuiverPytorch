@@ -31,7 +31,7 @@ from quiver_engine.file_utils import list_img_files, save_layer_img
 from quiver_engine.vis_utils import save_layer_outputs
 
 
-def get_app(model, hooks, classes, top, html_base_dir, temp_folder='./tmp', input_folder='./',
+def get_app(model, hooks, classes, top, html_base_dir, use_gpu, image_size, temp_folder='./tmp', input_folder='./',
             mean=None, std=None):
     '''
     The base of the Flask application to be run
@@ -49,8 +49,6 @@ def get_app(model, hooks, classes, top, html_base_dir, temp_folder='./tmp', inpu
     '''
 
     # single_input_shape, input_channels = get_input_config(model)
-    single_input_shape = (224,224)
-    input_channels = 3
     app = Flask(__name__)
     app.threaded = True
     CORS(app)
@@ -58,7 +56,17 @@ def get_app(model, hooks, classes, top, html_base_dir, temp_folder='./tmp', inpu
     '''
         prepare model
     '''
-    x = torch.zeros(1, 3, 224, 224, dtype=torch.float, requires_grad=False)
+    width = 224
+    height = 224
+    if image_size is not None:
+        width = image_size[-1]
+        height = image_size[-2]
+    x = torch.zeros(1, 3, width, height, dtype=torch.float, requires_grad=False)
+    
+    if use_gpu and torch.cuda.is_available():
+        x = x.cuda()
+        model = model.cuda()
+
     out = model(x)
 
     graph = make_dot(out, params = dict(model.named_parameters()))
@@ -112,7 +120,7 @@ def get_app(model, hooks, classes, top, html_base_dir, temp_folder='./tmp', inpu
         
         results = save_layer_outputs(model, hooks, graph, 
                                     layer_name, input_folder,
-                                    input_path, temp_folder)
+                                    input_path, temp_folder, use_gpu, image_size)
         return jsonify(results)
         
 
@@ -131,7 +139,7 @@ def run_app(app, port=5000):
     http_server.serve_forever()
 
 
-def launch(model, hooks, input_folder='./', classes=None, top=5, temp_folder='./tmp', 
+def launch(model, hooks, input_folder='./', use_gpu=False, image_size=None, classes=None, top=5, temp_folder='./tmp', 
            port=5000, html_base_dir=None, mean=None, std=None):
     if platform.system() is 'Windows':
         temp_folder = '.\\tmp'
@@ -148,6 +156,8 @@ def launch(model, hooks, input_folder='./', classes=None, top=5, temp_folder='./
         get_app(
             model, hooks, classes, top,
             html_base_dir=html_base_dir,
+            use_gpu=use_gpu,
+            image_size=image_size,
             temp_folder=temp_folder,
             input_folder=input_folder,
             mean=mean, std=std
