@@ -9,5 +9,5 @@ if __name__ == "__main__":
 
     hook_list = register_hook(model)
     
-    server.launch(model, hook_list, input_folder="./data/Cat", image_size=[50,50], use_gpu=False)
+    server.launch(model, hook_list, input_folder="./data/Cat", image_size=[250,250], use_gpu=False)
 

@@ -30,36 +30,50 @@ def register_hook(model):
     seen = []
     hook_list = []
 
-    def traversal_layers(layer):
-        layer_children = list(layer.children())
-        for i in range(len(layer_children)):
-            if hasattr(layer_children[i], "weight"):
-            # if type(layer_children[i]) == nn.Conv2d:
-                ids = str(id(layer_children[i].weight)) + "-" + layer_children[i]._get_name()
-                if ids not in seen:
-                    seen.append(ids)
-                    hook_list.append(Hook(layer_children[i]))
-                else:
-                    print("duplicate")
-
-            elif type(layer_children[i]) == nn.Sequential:
-                for j in range(len(layer_children[i])):
-                    tmp_childs = list(layer_children[i][j].children())
-                    if len(tmp_childs) >0:
-                        traversal_layers(layer_children[i][j])
-                    else:
-                        child = layer_children[i][j]
-                        if hasattr(child, "weight"):
-                            ids = str(id(child.weight)) + "-" + child._get_name()
-                            if ids not in seen:
-                                seen.append(ids)
-                                hook_list.append(Hook(child))
-                            else:
-                                print("duplicate")
-
-    traversal_layers(model)    
-
+    for name, layer in list(model.named_modules()):
+        if hasattr(layer, "weight"):
+            ids = str(id(layer.weight)) + "-" + layer._get_name()
+            if ids not in seen:
+                seen.append(ids)
+                hook_list.append(Hook(layer))
+            else:
+                print("duplicate")     
     return hook_list
+
+# def register_hook(model):
+#     seen = []
+#     hook_list = []
+
+#     def traversal_layers(layer):
+#         layer_children = list(layer.children())
+#         for i in range(len(layer_children)):
+#             if hasattr(layer_children[i], "weight"):
+#             # if type(layer_children[i]) == nn.Conv2d:
+#                 ids = str(id(layer_children[i].weight)) + "-" + layer_children[i]._get_name()
+#                 if ids not in seen:
+#                     seen.append(ids)
+#                     hook_list.append(Hook(layer_children[i]))
+#                 else:
+#                     print("duplicate")
+
+#             elif type(layer_children[i]) == nn.Sequential:
+#                 for j in range(len(layer_children[i])):
+#                     tmp_childs = list(layer_children[i][j].children())
+#                     if len(tmp_childs) >0:
+#                         traversal_layers(layer_children[i][j])
+#                     else:
+#                         child = layer_children[i][j]
+#                         if hasattr(child, "weight"):
+#                             ids = str(id(child.weight)) + "-" + child._get_name()
+#                             if ids not in seen:
+#                                 seen.append(ids)
+#                                 hook_list.append(Hook(child))
+#                             else:
+#                                 print("duplicate")
+
+#     traversal_layers(model)    
+
+#     return hook_list
 
 
 def make_dot(var, params=None):
