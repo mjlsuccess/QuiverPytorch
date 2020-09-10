@@ -20,8 +20,11 @@ def save_layer_outputs(model, hooks, graph, layer_name, input_folder, input_name
 
     img = np.expand_dims(np.transpose(img, (2, 0, 1)), axis=0)
 
-
     img_tensor = torch.tensor(img, dtype=torch.float32)
+
+    if use_gpu and torch.cuda.is_available():
+        img_tensor = img_tensor.cuda()
+
     outputs = model(img_tensor)
 
     layers = graph["config"]["layers"]
