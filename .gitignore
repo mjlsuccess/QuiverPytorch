@@ -2,6 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-model.json
+*.json
 tmp/
 .vscode/
