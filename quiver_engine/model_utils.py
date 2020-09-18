@@ -226,7 +226,7 @@ def prune_graph(graph):
 
         if name.isdigit(): #avoid digital name
             #update node name
-            new_name = "{}/{}".format(name, node["class_name"])
+            new_name = "{}-{}".format(name, node["class_name"])
             white_node_list[i]["name"] = new_name
             #update edge name
             for k, edge in enumerate(white_edge_list):
