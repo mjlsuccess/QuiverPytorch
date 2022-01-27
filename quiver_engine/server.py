@@ -46,6 +46,8 @@ _input_folder = None
 _use_gpu = False
 _image_size = [224,224]
 
+_http_server = None
+
 
 def register_routes():
 
@@ -102,9 +104,10 @@ def register_routes():
 
     @app.route('/predict/<input_path>')
     def get_prediction(input_path):
+        pass
         # print ("prediction", input_path)
-        results = [[("sa","bot_34", 0.2)],[("sa","bot_35", 0.6)]]
-        return safe_jsonify(results)
+        # results = [[("sa","bot_34", 0.2)],[("sa","bot_35", 0.6)]]
+        # return safe_jsonify(results)
 
 
 def update_model(model, hooks, input_folder, image_size, use_gpu=False, temp_folder='./tmp'):
@@ -170,7 +173,6 @@ def launch(model, hooks, input_folder='./', use_gpu=False, image_size=None, temp
     else:
         os.system('mkdir -p %s' % temp_folder)
 
-
     html_base_dir = html_base_dir if html_base_dir is not None else dirname(abspath(__file__))
     validate_launch(html_base_dir)
 
@@ -184,6 +186,7 @@ def launch(model, hooks, input_folder='./', use_gpu=False, image_size=None, temp
             input_folder=input_folder
         )
     
-    http_server = WSGIServer(('', port), app)
+    global _http_server
+    _http_server = WSGIServer(('', port), app)
     # webbrowser.open_new('http://localhost:' + str(port)) #
-    http_server.serve_forever()
+    _http_server.serve_forever()

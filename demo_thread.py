@@ -10,7 +10,7 @@ if __name__ == "__main__":
     model = models.vgg19(pretrained=False)
     hook_list = register_hook(model)
 
-    thread = threading.Thread(target=server.launch, args=(model, hook_list, "./data/Cat",False, [200,200], ))
+    thread = threading.Thread(target=server.launch, args=(model, hook_list, "C:\\ICT\workspace\\QuiverPytorch\\data\\Cat",False, [200,200], ))
     thread.daemon = True
     thread.start()
 
@@ -23,10 +23,10 @@ if __name__ == "__main__":
             print("resnet")
             model = models.resnet18(pretrained=False)
             hook_list = register_hook(model) 
-            server.update_model(model, hook_list, "./data/Dog", [200,200])
+            server.update_model(model, hook_list, "C:\\ICT\workspace\\QuiverPytorch\\data\\Dog", [200,200])
         elif a == '2':
             print("vgg19")
             model = models.vgg19(pretrained=False)
             hook_list = register_hook(model) 
-            server.update_model(model, hook_list, "./data/Cat", [200,200])
+            server.update_model(model, hook_list, "C:\\ICT\workspace\\QuiverPytorch\\data\\Cat", [200,200])
     
