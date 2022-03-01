@@ -15,28 +15,13 @@
     <script type="text/javascript">
 
         var myChart;
+        
         var legend_names = []
-        var init = false
-        var pie_colors = [
-                    '#37A2DA',
-                    '#32C5E9',
-                    '#67E0E3',
-                    '#9FE6B8',
-                    '#FFDB5C',
-                    '#ff9f7f',
-                    '#fb7293',
-                    '#E062AE',
-                    '#E690D1',
-                    '#e7bcf3',
-                    '#9d96f5',
-                    '#8378EA',
-                    '#96BFFF'
-                        ]
 
-        var color_id = Math.floor(Math.random()*100+1) % pie_colors.length;
+        var option = {}
 
         // 指定图表的配置项和数据
-        var option = {
+        option = {
             title: {
                 //left的值为'left', 'center', 'right'
                 left:'center',
@@ -58,37 +43,67 @@
                 }
             },
             tooltip: {
-                trigger: 'item'
+                trigger: 'item',
+                axisPointer:{
+                    type: 'shadow'
+                }
             },
             legend: {
-                bottom: 0
+                data: legend_names,
+                bottom: 0,
+                // left: 'left',
+                // orient: 'vertical',
+                // show: true
+            },
+            xAxis: {
+                type: 'category',
+                axisTick: { show: false },
+                data: []
+                
+            },
+            yAxis: {
+                // type: 'value'
             },
             series: []
         };
 
-        function update(keys, values){
+        function update(y_dat){
             try{
-                option['series'][0]['data'] = []
-                legend_names = []
-                for (var i=0; i<keys.length; i++){
-                    // legend_names.push(keys[i])
-                    option['series'][0]['data'].push({name:keys[i], value:values[i]}) 
+                for (var i=0; i<y_dat.length; i++){
+                    option['series'][i]['data'] = [y_dat[i]] // add [] if y_dat[i] type is string.
                 }
+                // update once
                 myChart.setOption(option);
             }
             catch(err){
                 // window.alert(err)
             }
+
         };
-        
+
+        function clearData(){
+            try{
+                len = option['series'].length
+                for (var i=0; i<len; i++){
+                    option['series'][i]['data'] = [] // add [] if y_dat[i] type is string.
+                }
+                // update once
+                myChart.clear();
+                myChart.setOption(option);
+            }
+            catch(err){
+                // window.alert(err)
+            }         
+        };
+
         function setTitle(title){
             option.title.text = title
             if (typeof (myChart) != "undefined") {
                 myChart.setOption(option)
             }
-        };
+        } ;       
         
-        function build(width, height) {
+        function build(width, height, xAxis, legends, colors) {
             document.getElementById('main').style.height = height + 'px';
             document.getElementById('main').style.width = width + 'px';
 
@@ -99,26 +114,29 @@
             // init Echarts
             myChart = echarts.init(document.getElementById('main'));
             
-            if (!init){ //In init status, create data
-                // window.alert(legend+ legend.length)  
-                init = true
-                // option['legend']['data'].push(legend[0])
-                // window.alert(option['legend']['data']+ option['legend']['data'].length) 
-                option['series'].push({
-                    // name: option['legend']['data'][0],
-                    name: 'Pie',
-                    type: 'pie',
-                    radius: '50%',
-                    // color: pie_colors[(color_id+i)%pie_colors.length],
-                    data: [],
-                    emphasis: {
-                        itemStyle: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                })             
+            if (legend_names.length == 0){ //In init status, create data
+                // window.alert(colors)  
+                for (var i=0; i<xAxis.length; i++){
+                    option['xAxis']['data'].push(xAxis[i])
+                }
+                
+                for (var i=0; i<legends.length; i++){
+                    legend_names.push(legends[i])
+                    option['series'].push({
+                        name: legends[i],
+                        type: 'bar',
+                        color: colors[i],
+                        label: {
+                            show: true,
+                            position: 'top', 
+                            textStyle: {
+                                color: 'black'
+                            }
+                        },
+                        
+                        data: []
+                    })
+                }              
             }
             myChart.setOption(option);
         }

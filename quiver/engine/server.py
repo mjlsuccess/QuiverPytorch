@@ -20,15 +20,15 @@ except ImportError:
     from gevent.pywsgi import WSGIServer
 
 
-from quiver_engine.util import (
+from engine.util import (
     load_img, safe_jsonify,
     validate_launch
 )
 
-from quiver_engine.model_utils import make_dot
+from engine.model_utils import make_dot
 
-from quiver_engine.file_utils import list_img_files, save_layer_img
-from quiver_engine.vis_utils import save_layer_outputs
+from engine.file_utils import list_img_files, save_layer_img
+from engine.vis_utils import save_layer_outputs
 
 
 app = Flask(__name__)
@@ -75,7 +75,7 @@ def register_routes():
 
     @app.route('/input-file/<path>')
     def get_input_file(path):
-        print("--------->",abspath(_input_folder), path)
+        # print("--------->",abspath(_input_folder), path)
         return send_from_directory(abspath(_input_folder), path)
 
     '''
@@ -90,12 +90,12 @@ def register_routes():
 
     @app.route('/inputs')
     def get_inputs():
-        print (list_img_files(_input_folder))
+        # print (list_img_files(_input_folder))
         return jsonify(list_img_files(_input_folder))
 
     @app.route('/layer/<layer_name>/<input_path>')
     def get_layer_outputs(layer_name, input_path):
-        
+        print(layer_name)
         results = save_layer_outputs(_model, _hook_list, _json_graph, 
                                     layer_name, _input_folder,
                                     input_path, _temp_folder, _use_gpu, _image_size)
@@ -104,6 +104,8 @@ def register_routes():
 
     @app.route('/predict/<input_path>')
     def get_prediction(input_path):
+        results = [[]]
+        return safe_jsonify(results)
         pass
         # print ("prediction", input_path)
         # results = [[("sa","bot_34", 0.2)],[("sa","bot_35", 0.6)]]

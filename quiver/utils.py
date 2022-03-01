@@ -1,12 +1,12 @@
 from PyQt5.QtWidgets import  QScrollArea, QWidget
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import  QUrl, QTimer
-import sys
+import sys, os
 
-sys.path.append("C:\\ICT\\workspace\\QuiverPytorch\\")
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-from quiver_engine import server
-from quiver_engine.model_utils import register_hook
+from engine import server
+from engine.model_utils import register_hook
 
 import threading, time
 
@@ -32,13 +32,13 @@ class ModelViewer():
         if self.http_server is not None:
             if self.http_server.started: # 等待 http_server 完成启动
                 self.htmlLoadFinished = False
-                print("server started")
+                # print("server started")
                 self.myHtml.load(QUrl("http://localhost:5000/"))
                 
     def slotHtmlLoadFinished(self):
         self.htmlLoadFinished = True
         self.timer.stop()
-        print("timer stop")
+        # print("timer stop")
     
     def slotUpdateModel(self, model, datapath):
         hook_list = register_hook(model)
@@ -57,6 +57,3 @@ class ModelViewer():
             self.http_server = server._http_server
 
         server.update_model(model, hook_list, datapath, [200,200])
-
-        # if self.http_server.started:
-        #     self.myHtml.reload()

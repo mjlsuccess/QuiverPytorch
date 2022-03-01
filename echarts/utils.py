@@ -1,8 +1,21 @@
 from PyQt5.QtWidgets import  QScrollArea
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PyQt5.QtCore import  QUrl
-
+from PyQt5.QtCore import  QUrl, QTimer
+import numpy as np
 offset = 20
+
+default_colors = [
+                '#dd6b66',
+                '#759aa0',
+                '#e69d87',
+                '#8dc1a9',
+                '#ea7e53',
+                '#eedd78',
+                '#73a373',
+                '#73b9bc',
+                '#7289ab',
+                '#91ca8c',
+                '#f49f42']
 
 class Line(object):
     '''
@@ -11,7 +24,7 @@ class Line(object):
     @param: legends: list of str for legends
     '''
     def __init__(self, basehtml: str, qtcontainer: QScrollArea, \
-                 legends: list, title="") -> None:
+                 legends: list, colors=[], title="") -> None:
         super().__init__()
 
         self.myHtml = QWebEngineView()
@@ -28,11 +41,31 @@ class Line(object):
         self.legends = legends
         self.title = title
 
+        if len(colors) < len(legends):
+            for i in range(len(colors), len(legends)):
+                colors.append(np.random.choice(default_colors, 1)[0])
+        self.colors = colors
+        
+        self.resizeTimer = QTimer()
+        self.resizeTimer.setInterval(300)
+        self.resizeTimer.timeout.connect(self.slotResize)
+        self.resizeTimer.start()
+
+        self.width = self.container.width()
+        self.height = self.container.height()
+
     def slotHtmlLoadFinished(self):
         self.htmlLoadFinished = True
         self.setTitle(self.title)
         self.build()
     
+    def slotResize(self):
+        if self.htmlLoadFinished:
+            if self.width != self.container.width() or self.height != self.container.height():
+                self.width  = self.container.width()
+                self.height = self.container.height()
+                self.build()
+
     def update(self, xAxisData: any, yAxisData: list):
         assert len(self.legends) == len(yAxisData)
         yAxisData = [str(i) for i in yAxisData]
@@ -45,9 +78,12 @@ class Line(object):
         self.myHtml.page().runJavaScript(jscode)      
 
     def build(self):
-        self.myHtml.page().runJavaScript("build('{}', '{}', {}); ".format(int(self.container.width()-offset), 
+        self.myHtml.page().runJavaScript("build('{}', '{}', {}, {}); ".format(int(self.container.width()-offset), 
                                                                     int(self.container.height()-offset), 
-                                                                    self.legends))
+                                                                    self.legends, self.colors))
+    def clearData(self):
+        self.myHtml.page().runJavaScript("clearData();")
+        pass
 
 class Bar(object):
     '''
@@ -56,7 +92,7 @@ class Bar(object):
     @param: legends: list of str for legends
     '''
     def __init__(self, basehtml: str, qtcontainer: QScrollArea, \
-                 xAxis: list, legends: list, title="") -> None:
+                 xAxis: list, legends: list, colors=[], title="") -> None:
         super().__init__()
 
         self.myHtml = QWebEngineView()
@@ -75,10 +111,31 @@ class Bar(object):
         self.xAxis = xAxis
         self.title = title
 
+        if len(colors) < len(legends):
+            for i in range(len(colors), len(legends)):
+                colors.append(np.random.choice(default_colors, 1)[0])
+        self.colors = colors
+
+        self.resizeTimer = QTimer()
+        self.resizeTimer.setInterval(300)
+        self.resizeTimer.timeout.connect(self.slotResize)
+        self.resizeTimer.start()
+
+        self.width = self.container.width()
+        self.height = self.container.height()
+
+
     def slotHtmlLoadFinished(self):
         self.htmlLoadFinished = True
         self.setTitle(self.title)
         self.build()
+
+    def slotResize(self):
+        if self.htmlLoadFinished:
+            if self.width != self.container.width() or self.height != self.container.height():
+                self.width  = self.container.width()
+                self.height = self.container.height()
+                self.build()
     
     def update(self, yAxisData: list):
         yAxisData = [str(i) for i in yAxisData]
@@ -90,16 +147,19 @@ class Bar(object):
         self.myHtml.page().runJavaScript(jscode)      
 
     def build(self):
-        self.myHtml.page().runJavaScript("build('{}', '{}', {}, {}); ".format(int(self.container.width()-offset), 
+        self.myHtml.page().runJavaScript("build('{}', '{}', {}, {}, {}); ".format(int(self.container.width()-offset), 
                                                                     int(self.container.height()-offset), 
-                                                                    self.xAxis, self.legends))
+                                                                    self.xAxis, self.legends, self.colors))
+    def clearData(self):
+        self.myHtml.page().runJavaScript("clearData();")
+        pass
 
 class Pie(object):
     '''
     @param: basehtml: absolute path of html file
     @param: qtcontainer: container to visualize html, only test on QScrollArea now
     '''
-    def __init__(self, basehtml: str, qtcontainer: QScrollArea, title="") -> None:
+    def __init__(self, basehtml: str, qtcontainer: QScrollArea, colors=[], title="") -> None:
         super().__init__()
 
         self.myHtml = QWebEngineView()
@@ -116,16 +176,37 @@ class Pie(object):
         # self.legend = legend
         self.title = title
 
+        self.colors = colors        
+
+        self.resizeTimer = QTimer()
+        self.resizeTimer.setInterval(300)
+        self.resizeTimer.timeout.connect(self.slotResize)
+        self.resizeTimer.start()
+        
+        self.width = self.container.width()
+        self.height = self.container.height()        
+
     def slotHtmlLoadFinished(self):
         self.htmlLoadFinished = True
         self.build()
         self.setTitle(self.title)
-    
+
+    def slotResize(self):
+        if self.htmlLoadFinished:
+            if self.width != self.container.width() or self.height != self.container.height():
+                self.width  = self.container.width()
+                self.height = self.container.height()
+                self.build()
+
     def update(self, data: dict):
         keys = [str(i) for i in data.keys()]
         values = [str(i) for i in data.values()]
 
-        jscode = '''update({},{})'''.format(keys, values)
+        if len(self.colors) < len(keys):
+            for i in range(len(self.colors), len(keys)):
+                self.colors.append(np.random.choice(default_colors, 1)[0])
+
+        jscode = '''update({},{},{})'''.format(keys, values, self.colors)
         self.myHtml.page().runJavaScript(jscode)
     
     def setTitle(self, title: str):
@@ -135,3 +216,7 @@ class Pie(object):
     def build(self):
         self.myHtml.page().runJavaScript("build('{}', '{}'); ".format(int(self.container.width()-offset), 
                                                                     int(self.container.height()-offset)))
+    
+    def clearData(self):
+        self.myHtml.page().runJavaScript("clearData();")
+        pass

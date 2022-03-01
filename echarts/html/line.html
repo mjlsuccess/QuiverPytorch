@@ -17,26 +17,9 @@
         var myChart;
         
         var legend_names = []
-        var xAxis_data = []
-        var yAxis_data = []
 
         var option = {}
-
-        var line_colors = [
-                        '#dd6b66',
-                        '#759aa0',
-                        '#e69d87',
-                        '#8dc1a9',
-                        '#ea7e53',
-                        '#eedd78',
-                        '#73a373',
-                        '#73b9bc',
-                        '#7289ab',
-                        '#91ca8c',
-                        '#f49f42'
-                        ]
-
-        var color_id = Math.floor(Math.random()*100+1) % line_colors.length;
+        var max_data_num = 500
 
         // 指定图表的配置项和数据
         option = {
@@ -61,42 +44,24 @@
                 }
             },
             tooltip: {
-                trigger: 'item',
-                axisPointer:{
-                    type: 'shadow'
-                }
+                trigger: 'axis'
             },
             legend: {
                 data: legend_names,
                 bottom: 0,
                 // left: 'left',
                 // orient: 'vertical',
-                // show: true
+                show: true
             },
             xAxis: {
-                type: 'category',
                 axisTick: { show: false },
                 data: []
                 
             },
             yAxis: {
-                // type: 'value'
+                type: 'value'
             },
-            series: yAxis_data
-        };
-
-        function update(y_dat){
-            try{
-                for (var i=0; i<y_dat.length; i++){
-                    option['series'][i]['data'] = [y_dat[i]] // add [] if y_dat[i] type is string.
-                }
-                // update once
-                myChart.setOption(option);
-            }
-            catch(err){
-                // window.alert(err)
-            }
-
+            series: []
         };
 
         function setTitle(title){
@@ -104,9 +69,55 @@
             if (typeof (myChart) != "undefined") {
                 myChart.setOption(option)
             }
-        } ;       
+        };
+
+        function update(x_dat, y_dat){
+            try{
+                if (option['legend']['data'].length != y_dat.length){
+                // window.alert(option['legend']['data'] + " data dimension error " +y_dat)
+                return
+                } 
+
+                option['xAxis']['data'].push(x_dat)
+                for (var i=0; i<y_dat.length; i++){
+                    option['series'][i]['data'].push(y_dat[i])
+                }
+
+                for(var i=0; i<option['series'].length; i++){
+                        if (option['series'][i]['data'].length > max_data_num){
+                            option['series'][i]['data'].shift();
+                        }
+                    }
+                    if (option['xAxis']['data'].length > max_data_num){
+                        option['xAxis']['data'].shift();
+                    }
+                // update once
+                myChart.setOption(option);      
+            }
+            catch(err){
+                //do nothing
+                // window.alert(err)
+            }
+        }
+
+        function clearData(){
+            try{
+                for (var i=0; i<option['series'].length; i++){
+                    option['series'][i]['data'] = []
+                }
+                option['xAxis']['data'] = []
+                // update once
+                myChart.clear()
+                myChart.setOption(option);      
+            }
+            catch(err){
+                //do nothing
+                // window.alert(err)
+            }
+        }
         
-        function build(width, height, xAxis, legends) {
+        function build(width, height, legends, colors) {
+
             document.getElementById('main').style.height = height + 'px';
             document.getElementById('main').style.width = width + 'px';
 
@@ -118,25 +129,12 @@
             myChart = echarts.init(document.getElementById('main'));
             
             if (legend_names.length == 0){ //In init status, create data
-                // window.alert(xAxis+ xAxis.length)    
-                for (var i=0; i<xAxis.length; i++){
-                    option['xAxis']['data'].push(xAxis[i])
-                }
-                
                 for (var i=0; i<legends.length; i++){
                     legend_names.push(legends[i])
-                    yAxis_data.push({
+                    option['series'].push({
                         name: legends[i],
-                        type: 'bar',
-                        color: line_colors[(color_id+i)%line_colors.length],
-                        label: {
-                            show: true,
-                            position: 'top', 
-                            textStyle: {
-                                color: 'black'
-                            }
-                        },
-                        
+                        type: 'line',
+                        color: colors[i],
                         data: []
                     })
                 }                

@@ -6,7 +6,7 @@ import cv2
 import numpy as np
 # from scipy.misc import imsave
 
-from quiver_engine.util import deprocess_image
+from engine.util import deprocess_image
 
 def save_layer_img(layer_outputs, layer_name, idx, temp_folder, input_path):
     filename = get_output_filename(layer_name, idx, temp_folder, input_path)

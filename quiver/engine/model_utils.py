@@ -2,7 +2,7 @@ import torch
 from torch.autograd import Variable
 import torch.nn as nn
 
-from quiver_engine.file_utils import save_layer_img
+from engine.file_utils import save_layer_img
 
 # A simple hook class that returns the input and output of a layer during forward pass
 class Hook():

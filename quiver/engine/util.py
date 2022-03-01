@@ -2,7 +2,7 @@ from __future__ import absolute_import, division, print_function
 import json
 from flask.json import jsonify
 import numpy as np
-# from quiver_engine.imagenet_utils import preprocess_input, decode_imagenet_predictions
+# from engine.imagenet_utils import preprocess_input, decode_imagenet_predictions
 from os import path
 import cv2
 

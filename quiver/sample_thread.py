@@ -1,16 +1,19 @@
 import numpy as np
-from quiver_engine import server
+from engine import server
 from torchvision import  models
-from quiver_engine.model_utils import register_hook
+from engine.model_utils import register_hook
 
-import threading
+import threading, os
 
 if __name__ == "__main__":
     
     model = models.vgg19(pretrained=False)
     hook_list = register_hook(model)
 
-    thread = threading.Thread(target=server.launch, args=(model, hook_list, "C:\\ICT\workspace\\QuiverPytorch\\data\\Cat",False, [200,200], ))
+    rootpath = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+    datapath = os.path.join(rootpath, "data/cat")
+
+    thread = threading.Thread(target=server.launch, args=(model, hook_list, datapath, False, [200,200], ))
     thread.daemon = True
     thread.start()
 
@@ -23,10 +26,12 @@ if __name__ == "__main__":
             print("resnet")
             model = models.resnet18(pretrained=False)
             hook_list = register_hook(model) 
-            server.update_model(model, hook_list, "C:\\ICT\workspace\\QuiverPytorch\\data\\Dog", [200,200])
+            datapath = os.path.join(rootpath, "data/Dog")
+            server.update_model(model, hook_list, datapath, [200,200])
         elif a == '2':
             print("vgg19")
             model = models.vgg19(pretrained=False)
             hook_list = register_hook(model) 
-            server.update_model(model, hook_list, "C:\\ICT\workspace\\QuiverPytorch\\data\\Cat", [200,200])
+            datapath = os.path.join(rootpath, "data/Cat")
+            server.update_model(model, hook_list, datapath, [200,200])
     

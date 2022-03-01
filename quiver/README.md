@@ -24,10 +24,10 @@ hook_list = register_hook(model)
 server.launch(model, hook_list, input_folder="./data/Cat", image_size=[50,50], use_gpu=False)
 ```
 
-1. run demo.py or demo_thread.py in terminal : 
+1. run sample.py or sample_thread.py in terminal : 
 
 ```
-python demo.py
+python sample.py
 ```
 
 2. open web browser and input url: http://localhost:5000/ 
