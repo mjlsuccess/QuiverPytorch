@@ -81,6 +81,19 @@
             }
         };
 
+        function destroy(){
+            try{
+                clearData()
+                if (typeof (myChart) != "undefined") { //清除旧实例
+                    myChart.clear();
+                    myChart.dispose();
+                }     
+            }
+            catch(err){
+                // window.alert(err)
+            }         
+        };          
+
         function setTitle(title){
             option.title.text = title
             if (typeof (myChart) != "undefined") {

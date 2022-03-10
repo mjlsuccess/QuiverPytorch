@@ -29,14 +29,15 @@ class MainWindow(QMainWindow):
         
         # echarts 图标可视化
         currentfolder = os.path.abspath(os.path.dirname(__file__))
-        root = os.path.join(os.path.dirname(currentfolder), "echarts", "html")
+        self.root = os.path.join(os.path.dirname(currentfolder), "echarts", "html")
+        root = self.root
         colors = ['#dd6b66', '#759aa0', '#e69d87']
 
         htmlfile = os.path.join(root, "line.html")
         self.line1 = echarts.Line(cvtPath(htmlfile), self.ui.scrollArea, ["Series1 %", "Series2 %", "Series3 %", "Series4 %"], colors=colors, title="Line test")
         self.line2 = echarts.Line(cvtPath(htmlfile), self.ui.scrollArea_4, ["Series1 %", "Series2 %", "Series3 %", "Series4 %"], colors=colors, title="Line test")
 
-        htmlfile = htmlfile = os.path.join(root, "bar.html")
+        htmlfile  = os.path.join(root, "bar.html")
         
         self.bar1 = echarts.Bar(cvtPath(htmlfile), self.ui.scrollArea_2, xAxis=["123"], legends=["Series1 %", "Series2 %", "Series3 %", "Series4 %"], colors=colors, title="Bar test1") 
         self.bar2 = echarts.Bar(cvtPath(htmlfile), self.ui.scrollArea_5, xAxis=["123"], legends=["Series1 %", "Series2 %", "Series3 %", "Series4 %"], title="Bar test2") 
@@ -94,18 +95,36 @@ class MainWindow(QMainWindow):
             yValue3 = np.random.randint(30,40)
             yValue4 = np.random.randint(20,40)            
 
+            # # test bar
+            # if self.count <= 5:
+            #     self.bar1.update([yValue1, yValue2, yValue3, yValue4])
+            #     self.bar2.update([yValue1, yValue2, yValue3, yValue4])
+            # elif self.count>5 and self.count <10:
+                
+            #     self.bar1.clearData()
+            #     self.bar2.clearData()
+            #         # self.clearflag = True
+            # else:
+            #     self.bar1.update([yValue1, yValue2, yValue3, yValue4])
+            #     self.bar2.update([yValue1, yValue2, yValue3, yValue4])   
+
             # test bar
             if self.count <= 5:
                 self.bar1.update([yValue1, yValue2, yValue3, yValue4])
                 self.bar2.update([yValue1, yValue2, yValue3, yValue4])
             elif self.count>5 and self.count <10:
-                
-                self.bar1.clearData()
-                self.bar2.clearData()
-                    # self.clearflag = True
+                self.bar1.destroy()
+                self.bar2.destroy()     
+
+            elif self.count == 10:
+                htmlfile  = os.path.join(self.root, "bar.html")
+                self.bar1 = echarts.Bar(cvtPath(htmlfile), self.ui.scrollArea_2, xAxis=["123"], legends=["Series1 %", "Series2 %", "Series3 %", "Series4 %"], title="Bar test1") 
+                self.bar2 = echarts.Bar(cvtPath(htmlfile), self.ui.scrollArea_5, xAxis=["123"], legends=["Series1 %", "Series2 %", "Series3 %", "Series4 %"], title="Bar test2") 
             else:
                 self.bar1.update([yValue1, yValue2, yValue3, yValue4])
-                self.bar2.update([yValue1, yValue2, yValue3, yValue4])   
+                self.bar2.update([yValue1, yValue2, yValue3, yValue4])                
+
+       
 
             # test line
             if self.count <= 5:

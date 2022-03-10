@@ -85,6 +85,10 @@ class Line(object):
         self.myHtml.page().runJavaScript("clearData();")
         pass
 
+    def destroy(self):
+        self.myHtml.page().runJavaScript("destroy();")
+        pass    
+
 class Bar(object):
     '''
     @param: basehtml: absolute path of html file
@@ -124,7 +128,6 @@ class Bar(object):
         self.width = self.container.width()
         self.height = self.container.height()
 
-
     def slotHtmlLoadFinished(self):
         self.htmlLoadFinished = True
         self.setTitle(self.title)
@@ -152,6 +155,10 @@ class Bar(object):
                                                                     self.xAxis, self.legends, self.colors))
     def clearData(self):
         self.myHtml.page().runJavaScript("clearData();")
+        pass
+
+    def destroy(self):
+        self.myHtml.page().runJavaScript("destroy();")
         pass
 
 class Pie(object):
@@ -220,3 +227,7 @@ class Pie(object):
     def clearData(self):
         self.myHtml.page().runJavaScript("clearData();")
         pass
+
+    def destroy(self):
+        self.myHtml.page().runJavaScript("destroy();")
+        pass    

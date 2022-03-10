@@ -115,6 +115,19 @@
                 // window.alert(err)
             }
         }
+
+        function destroy(){
+            try{
+                clearData()
+                if (typeof (myChart) != "undefined") { //清除旧实例
+                    myChart.clear();
+                    myChart.dispose();
+                }     
+            }
+            catch(err){
+                // window.alert(err)
+            }         
+        };  
         
         function build(width, height, legends, colors) {
 
