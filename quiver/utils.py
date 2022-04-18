@@ -11,7 +11,7 @@ from engine.model_utils import register_hook
 import threading, time
 
 class ModelViewer():
-    def __init__(self, qtcontainer) -> None:
+    def __init__(self, qtcontainer, img_size=None) -> None:
         self.myHtml = QWebEngineView()
         self.myHtml.loadFinished.connect(self.slotHtmlLoadFinished)
 
@@ -24,6 +24,11 @@ class ModelViewer():
         self.timer.setInterval(100)
         self.timer.timeout.connect(self.slotTimeout)
         self.timer.start()
+
+        if img_size is None:
+            self.img_size = [224,224] #[height, width]
+        else:
+            self.img_size = img_size
 
         self.http_server = None
         pass
@@ -47,7 +52,7 @@ class ModelViewer():
 
         if self.thread is None:
             server._http_server = None
-            self.thread = threading.Thread(target=server.launch, args=(model, hook_list, datapath, False, [200,200], ))
+            self.thread = threading.Thread(target=server.launch, args=(model, hook_list, datapath, False, self.img_size, ))
             self.thread.daemon = True
             self.thread.start()
 
@@ -56,4 +61,4 @@ class ModelViewer():
 
             self.http_server = server._http_server
 
-        server.update_model(model, hook_list, datapath, [200,200])
+        server.update_model(model, hook_list, datapath, self.img_size)

@@ -62,7 +62,7 @@ class MainWindow(QMainWindow):
         self.model = self.models["vgg"]
         rootpath = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
         self.datapth = os.path.join(rootpath, "data", "Cat")
-        self.modelVis = ModelViewer(self.ui.scrollArea_10)
+        self.modelVis = ModelViewer(self.ui.scrollArea_10, img_size=[100,224]) #img_size: [height, width]
         
         self.ui.pushButton.clicked.connect(self.slotModelVis)
         self.ui.checkBox_resnet.stateChanged.connect(self.slotModelSelect)
